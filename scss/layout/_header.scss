@@ -1,0 +1,118 @@
+/* 
+ Header
+*/
+
+.header {
+    padding: 23px 0 17px;
+    background-color: var(--color-white);
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 999;
+    box-shadow: var(--box-shadow-base);
+
+    .header_inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .header_inner_right {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .header_tel_wrapp {
+
+        &:not(:last-child) {
+            margin-right: 80px;
+        }
+
+        a {
+            color: var(--color-grey);
+
+            &:active,
+            &:focus,
+            &:hover {
+                color: var(--color-blue);
+            }
+        }
+
+        .header_tel_btn {
+            display: none;
+        }
+
+        .header_tel_list {
+            display: flex;
+            flex-wrap: wrap;
+
+            li {
+
+                &:not(:last-child) {
+                    margin-right: 30px;
+                }
+
+            }
+
+        }
+    }
+
+    .header_language {
+        position: relative;
+
+        .header_language_btn {
+            position: relative;
+            display: flex;
+            color: var(--color-blue);
+
+            &:active,
+            &:focus,
+            &:hover {
+                color: rgba(var(--color-blue-rgb), 0.7);
+            }
+
+            .arrow {
+                flex: none;
+                align-self: center;
+                margin: 0 0 var(--gap-1) var(--gap-1);
+                border-color: var(--color-blue);
+                transition: var(--transition-base);
+            }
+        }
+
+        .header_language_list {
+            opacity: 0;
+            height: 0;
+            visibility: hidden;
+            pointer-events: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            padding: var(--gap-5);
+            box-shadow: var(--box-shadow-base);
+            background-color: var(--color-white);
+            transition: var(--transition-fade);
+        }
+
+        &.active {
+
+            .header_language_btn {
+
+                .arrow {
+                    transform: rotate(-135deg);
+                    -webkit-transform: rotate(-135deg);
+                    margin-bottom: 0;
+                }
+            }
+
+            .header_language_list {
+                opacity: 1;
+                visibility: visible;
+                height: auto;
+                pointer-events: auto;
+            }
+        }
+
+    }
+}

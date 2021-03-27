@@ -1,0 +1,12 @@
+/* 
+   footer
+*/
+
+.footer {
+	background-color: var(--color-black);
+	padding: var(--gap-8) 0;
+	color: var(--color-white);
+	position: sticky;
+	position: -webkit-sticky;
+	top: 100%;
+}

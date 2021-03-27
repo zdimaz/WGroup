@@ -1,0 +1,381 @@
+// @include vertical-gradient($color-white, $color-black);
+@mixin vertical-gradient($from, $to) {
+    //vertical top to bottom
+    background: $to;
+    background: -moz-linear-gradient(top, $from 0%, $to 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $from), color-stop(100%, $to));
+    background: -webkit-linear-gradient(top, $from 0%, $to 100%);
+    background: -o-linear-gradient(top, $from 0%, $to 100%);
+    background: linear-gradient(to bottom, $from 0%, $to 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#{$from}, endColorstr=#{$to})
+}
+
+// @include horizontal-gradient($color-white, $color-black);
+@mixin horizontal-gradient($from, $to, $stop: 100%) {
+    //horizontal left to right
+    /* fallback/image non-cover color */
+    background-color: $from;
+    /* Firefox 3.6+ */
+    background-image: -moz-linear-gradient(left, $from 0%, $to $stop);
+    /* Safari 4+, Chrome 1+ */
+    background-image: -webkit-gradient(linear, left top, right top, color-stop(0%, $from), color-stop($stop, $to));
+    /* Safari 5.1+, Chrome 10+ */
+    background-image: -webkit-linear-gradient(left, $from 0%, $to $stop);
+    /* Opera 11.10+ */
+    background-image: -o-linear-gradient(left, $from 0%, $to $stop);
+    /* IE10+ */
+    background: -ms-linear-gradient(left, $from 0%, $to $stop);
+    /* Standard */
+    background: linear-gradient(to right, $from 0%, $to $stop);
+}
+
+// vertical/horizontal gradient
+@mixin gradient($start-color, $end-color, $orientation) {
+    background: $start-color;
+
+    @if $orientation=="vertical" {
+        background: -webkit-linear-gradient(top, $start-color, $end-color);
+        background: linear-gradient(to bottom, $start-color, $end-color);
+    }
+
+    @else if $orientation=="horizontal" {
+        background: -webkit-linear-gradient(left, $start-color, $end-color);
+        background: linear-gradient(to right, $start-color, $end-color);
+    }
+
+    @else {
+        background: -webkit-radial-gradient(center, ellipse cover, $start-color, $end-color);
+        background: radial-gradient(ellipse at center, $start-color, $end-color);
+    }
+}
+
+// diagonal gradient
+// @include gradient_diagonal(0deg, #top_color, 0%, #bottom_color, 100%);
+@mixin gradient_diagonal($deg, $from, $fromstop, $to, $tostop) {
+    background: $from;
+    background: -webkit-linear-gradient($deg, $from $fromstop, $to $tostop);
+    background: linear-gradient($deg, $from $fromstop, $to $tostop);
+}
+
+// scroll bar
+@mixin wk-scroll() {
+    &::-webkit-scrollbar {
+        background-color: #222;
+        border-radius: 17px;
+        width: 9px;
+        height: 9px;
+    }
+
+    &::-webkit-scrollbar-button {}
+
+    &::-webkit-scrollbar-track {}
+
+    &::-webkit-scrollbar-track-piece {}
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #555;
+        border-radius: 17px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: #666666;
+    }
+
+    &::-webkit-scrollbar-thumb:active {
+        background-color: #555;
+    }
+
+    &::-webkit-scrollbar-corner {
+        background-color: transparent;
+    }
+
+    &::-webkit-resizer {}
+}
+
+// Hyphens
+@mixin hyphens($display: auto) {
+    -webkit-hyphens: $display;
+    -moz-hyphens: $display;
+    hyphens: $display;
+}
+
+// Word wrap
+@mixin word-wrap() {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+// Ellipsis
+@mixin ellipsis() {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+// START
+@mixin getMap($currentMap) {
+
+    @each $key,
+    $value in $currentMap {
+        #{$key}: $value;
+    }
+}
+
+// START
+@mixin rootVar($currentMap) {
+
+    @each $key,
+    $value in $currentMap {
+        --#{$key}: #{$value};
+    }
+}
+
+// mixin settings
+@mixin breakpoint($breakpoint, $logic: false) {
+    @if($logic) {
+        @media #{$logic} and (max-width: map-get($map: $breakpoints, $key: $breakpoint)) {
+            @content;
+        }
+    }
+
+    @else {
+        @media (max-width: map-get($map: $breakpoints, $key: $breakpoint)) {
+            @content;
+        }
+    }
+}
+
+// Respond above.
+@mixin respond-above($breakpoint) {
+
+    // If the breakpoint exists in the map.
+    @if map-has-key($breakpoints, $breakpoint) {
+
+        // Get the breakpoint value.
+        $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+        // Write the media query.
+        @media (min-width: $breakpoint-value) {
+            @content;
+        }
+
+        // If the breakpoint doesn't exist in the map.
+    }
+
+    @else {
+
+        // Log a warning.
+        @warn 'Invalid breakpoint: #{$breakpoint}.';
+    }
+}
+
+// Respond above.
+@mixin respond-under($breakpoint) {
+
+    // If the breakpoint exists in the map.
+    @if map-has-key($breakpoints, $breakpoint) {
+
+        // Get the breakpoint value.
+        $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+        // Write the media query.
+        @media (max-width: $breakpoint-value) {
+            @content;
+        }
+
+        // If the breakpoint doesn't exist in the map.
+    }
+
+    @else {
+
+        // Log a warning.
+        @warn 'Invalid breakpoint: #{$breakpoint}.';
+    }
+}
+
+@mixin position($position: false, $top: false, $left: false, $bottom: false, $right: false) {
+    position: $position;
+
+    @if type_of($top)==number {
+        top: $top;
+    }
+
+    @if type_of($left)==number {
+        left: $left;
+    }
+
+    @if type_of($bottom)==number {
+        bottom: $bottom;
+    }
+
+    @if type_of($right)==number {
+        right: $right;
+    }
+}
+
+// START
+@mixin clearfix {
+
+    &::before,
+    &::after {
+        content: '';
+        display: block;
+    }
+
+    &::after {
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+}
+
+// @include border(2px, dotted, $color-purple);
+@mixin border($width, $style, $color) {
+    border: $width#{'px'} $style $color;
+}
+
+@mixin transition($property, $duration, $timing) {
+    -moz-transition: $property $duration $timing;
+    -ms-transition: $property $duration $timing;
+    transition: $property $duration $timing;
+}
+
+//@include margin-auto();
+@mixin margin-auto {
+    margin: {
+        left: auto;
+        right: auto;
+    }
+}
+
+// @include triangle(before, #000, right, 10px);
+@mixin triangle($before-after, $color, $direction, $size) {
+    position: relative;
+
+    @if $before-after==before {
+        &:before {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 0;
+            top: 0;
+            left: 0;
+
+            @if $direction==bottom {
+                top: auto;
+                bottom: 0;
+                margin-bottom: -$size;
+                border-left: $size solid transparent;
+                border-right: $size solid transparent;
+                border-top: $size solid $color;
+            }
+
+            @else if $direction==top {
+                top: 0;
+                margin-top: -$size;
+                border-left: $size solid transparent;
+                border-right: $size solid transparent;
+                border-bottom: $size solid $color;
+            }
+
+            @else if $direction==right {
+                left: auto;
+                right: 0;
+                margin-right: -$size;
+                border-top: $size solid transparent;
+                border-bottom: $size solid transparent;
+                border-left: $size solid $color;
+            }
+
+            @else if $direction==left {
+                left: 0;
+                margin-left: -$size;
+                border-top: $size solid transparent;
+                border-bottom: $size solid transparent;
+                border-right: $size solid $color;
+            }
+        }
+    }
+
+    @if $before-after==after {
+        &:after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 0;
+            top: 0;
+            left: 0;
+
+            @if $direction==bottom {
+                top: auto;
+                bottom: 0;
+                margin-bottom: -$size;
+                border-left: $size solid transparent;
+                border-right: $size solid transparent;
+                border-top: $size solid $color;
+            }
+
+            @else if $direction==top {
+                top: 0;
+                margin-top: -$size;
+                border-left: $size solid transparent;
+                border-right: $size solid transparent;
+                border-bottom: $size solid $color;
+            }
+
+            @else if $direction==right {
+                left: auto;
+                right: 0;
+                margin-right: -$size;
+                border-top: $size solid transparent;
+                border-bottom: $size solid transparent;
+                border-left: $size solid $color;
+            }
+
+            @else if $direction==left {
+                left: 0;
+                margin-left: -$size;
+                border-top: $size solid transparent;
+                border-bottom: $size solid transparent;
+                border-right: $size solid $color;
+            }
+        }
+    }
+}
+
+@mixin placeholder {
+    &:-moz-placeholder {
+        @content;
+    }
+
+    &::-moz-placeholder {
+        @content;
+    }
+
+    &:-ms-input-placeholder {
+        @content;
+    }
+
+    &::-webkit-input-placeholder {
+        @content;
+    }
+}
+
+// google-font
+@mixin google-font($family) {
+    @import url("http://fonts.googleapis.com/css?family=#{$family}");
+}
+
+@mixin import($import) {
+    @import url("#{$import}");
+}
+
+// @include google-font("Droid Sans");

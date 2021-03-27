@@ -1,0 +1,181 @@
+<!Doctype html>
+<html lang="ru">
+    <!-- Head Start     ============================================-->
+    <head>
+        <!-- Basic page needs     -->
+        <title>Главная страница</title>
+        <meta charset="utf-8" />
+        <meta name="author" content="" />
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <!-- IE Support     "IE=edge","IE=11","IE=10","IE=9","IE=8"     -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- Mobile specific metas     -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <!-- Disable conversion of telephone numbers     -->
+        <meta name="format-detection" content="telephone=no" />
+        <!-- Theme CSS     -->
+        <link href="css/pages/main.css" rel="stylesheet" />
+        <link href="https://unpkg.com/vue-select@latest/dist/vue-select.css" rel="stylesheet" />
+        <!-- Theme CSS     -->
+        <link href="css/main.css" rel="stylesheet" media="screen" />
+        <link href="css/responsive.css" rel="stylesheet" media="screen" />
+        <!-- Old IE     -->
+        <!--  HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file.-->
+        <!-- [if lt IE 9] <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>[endif]-->
+    </head>
+    <!-- Head End       ============================================-->
+    <!-- Body Start     ============================================-->
+    <body>
+        <div class="page_wrapp">
+            <!-- Preloader Start     ============================================-->
+            <div id="preloader-percent"><span class="preloader_percent_qt"></span></div>
+            <!-- Preloader End       ============================================-->
+            <!-- Header Start     ============================================-->
+            <header class="header" id="header">
+                <div class="container">
+                    <div class="header_inner">
+                        <!-- - - - - - - - - - - - - - Logo - - - - - - - - - - - - - - - --->
+                        <div class="logo"><a href="index.html"><img src="images/logo.svg" alt="logo" width="110" height="30" /></a></div>
+                        <!-- - - - - - - - - - - - - - End of Logo - - - - - - - - - - - - - - - --->
+                        <div class="header_inner_right">
+                            <div class="header_tel_wrapp"> <a class="header_tel_btn" href="#!">Контакты</a>
+                                <ul class="header_tel_list">
+                                    <li><a href="#!tel:+380933326182">+38 (093) 332 61 82</a></li>
+                                    <li><a href="#!tel:+380637992168">+38 (063) 799 21 68</a></li>
+                                </ul>
+                            </div>
+                            <ul class="header_language">
+                                <li><a class="header_language_btn" href="#!">Ru<span class="arrow down"></span></a>
+                                    <ul class="header_language_list">
+                                        <li> <a href="#!">En</a></li>
+                                        <li> <a href="#!">Ru</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- Header End       ============================================-->
+            <!-- Content Start-->
+            <main id="content">
+                <!--  Section Start-->
+                <section class="section_main">
+                    <div class="main_col_left" style="background-image: url('images/main/Main-background.jpg');"></div>
+                    <div class="main_col_right" style="background-image: url('images/main/Main.jpg');"></div>
+                    <div class="container">
+                        <div class="main_col_desc">
+                            <h1>Подбор IT- специалистов</h1>
+                            <p class="middle_txt">Мы берем поиск нужного Вам специалиста на себя.</p><a class="link_arrow" href="#!">Бесплатная консультация<span class="arrow right"> </span></a>
+                        </div>
+                    </div>
+                </section>
+                <!--  End of Section-->
+                <div class="section_form_offer">
+                    <div class="container">
+                        <form class="form_offer">
+                            <legend class="title-3">Ищем кандидата </legend>
+                            <div class="form_offer_row">
+                                <div class="form_offer_col small">
+                                    <label for="name">Вакансия</label>
+                                    <div id="app">
+                                        <v-select :options="options" placeholder="Choose"></v-select>
+                                    </div>
+                                </div>
+                                <div class="form_offer_col large">
+                                    <label for="name">Комментарий</label>
+                                    <textarea class="textarea_small" name="" placeholder="Несколько слов о кандидате"></textarea>
+                                </div>
+                            </div>
+                            <div class="form_offer_row">
+                                <div class="form_offer_col large">
+                                    <label for="name">Ваше Имя</label>
+                                    <input type="text" placeholder="ваше имя" />
+                                </div>
+                                <div class="form_offer_col large">
+                                    <label for="name"> E-mail <sup>*</sup></label>
+                                    <input type="email" placeholder="ваш e-mail" />
+                                </div>
+                                <div class="form_offer_col large">
+                                    <label for="name"> телефон <sup>*</sup></label>
+                                    <input type="tel" placeholder="ваш телефон" />
+                                </div>
+                                <div class="form_offer_col small">
+                                    <button class="btn btn_default btn_rounted1 btn_blue_gradient" type="button"> ОТПРАВИТЬ<span class="arrow right"></span></button>
+                                </div>
+                            </div>
+                            <output name="result" hidden="hidden"></output>
+                        </form>
+                    </div>
+                </div>
+                <!--  Section Start-->
+                <section class="section_about">
+                    <div class="container">
+                        <div class="section_about_inner">
+                            <div class="section_about_col">
+                                <div class="subtitle">И все таки</div>
+                                <h2>Почему стоит работать с ProToHR?</h2>
+                                <p class="short_line_bottom">Концентрируя свою деятельность тольков области IT-рекрутинга, можно утверждать, что качество сервиса ProToHR вне конкуренции.</p>
+                            </div>
+                            <div class="section_about_col">
+                                <ul class="list_with_icons">
+                                    <li>
+                                        <div class="list_icon"><img src="images/icons/clock.svg" alt="clock.svg" width="30" height="30" /></div>
+                                        <p>Мы <strong>экономим </strong>десятки часов Вашего времени на поиск и оценку кандидатов</p>
+                                    </li>
+                                    <li>
+                                        <div class="list_icon"><img src="images/icons/user.svg" alt="" width="30" height="25" /></div>
+                                        <p> <strong>Оцениваем </strong>личностные качества и ключевые мотиваторы каждого кандидата</p>
+                                    </li>
+                                    <li>
+                                        <div class="list_icon"><img src="images/icons/search-file.svg" alt="" width="30" height="30" /></div>
+                                        <p> <strong>Проводим </strong>первичную оценку соответствия навыков и умений кандидата вашим требованиям</p>
+                                    </li>
+                                    <li>
+                                        <div class="list_icon"><img src="images/icons/like.svg" alt="" width="30" height="30" /></div>
+                                        <p> <strong>Заботимся </strong>о репутации наших Клиентов</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!--  End of Section-->
+                <!--  Section Start-->
+                <section class="section_services">
+                    <div class="container">
+                        <div class="section_services_col_bg" style="background-image: url('images/services/People.jpg');"></div>
+                        <div class="section_services_inner">
+                            <div class="section_services_col_desc">
+                                <div class="subtitle">наша цель</div>
+                                <h2>Качественные кандидаты</h2>
+                                <p>“Качество, а не количество” – это основной принцип нашей компании. Мы предоставляем кандидатов не только соответствующих квалификации, но и заинтересованных именно в вашей компании и вакансии</p>
+                                <p>Только 40% кандидатов публикуют резюме в открытом доступе, мы знаем где находятся остальные 60%. Собственный кадровый резерв и разработка стратегии поиска кандидатов при помощи специального программного обеспечения</p><a class="link_arrow" href="#!">Найти специалиста<span class="arrow right"> </span></a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!--  End of Section-->
+            </main>
+            <!-- Content of End-->
+            <!-- Footer Start     ============================================-->
+            <footer class="footer" id="footer">
+                <div class="container">
+                    <p class="text_center">i am footer :)</p>
+                </div>
+            </footer>
+            <!-- Footer End       ============================================-->
+        </div>
+        <!-- Include Libs     ============================================-->
+        <!-- Include Libs End       ============================================-->
+        <!-- Include Theme       ============================================-->
+        <!-- Include Theme End       ============================================-->
+        <script src="https://unpkg.com/vue@latest"></script>
+        <script src="https://unpkg.com/vue-select@latest"></script>
+        <script src="js/main.js"></script>
+        <!-- Scripts Init Plugins & Core START     ============================================-->
+        <!-- Scripts Init Plugins & Core END       ============================================-->
+    </body>
+    <!-- Body End       ============================================-->
+</html>

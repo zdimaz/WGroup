@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'Value Sans Pro';
+    src: url('ValueSansPro-Bold.woff2') format('woff2'),
+        url('ValueSansPro-Bold.woff') format('woff'),
+        url('ValueSansPro-Bold.svg#ValueSansPro-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Value Sans Pro';
+    src: url('ValueSansPro-Medium.woff2') format('woff2'),
+        url('ValueSansPro-Medium.woff') format('woff'),
+        url('ValueSansPro-Medium.svg#ValueSansPro-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
